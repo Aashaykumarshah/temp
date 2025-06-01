@@ -46,7 +46,8 @@ def run_dv(nodes, edges, start_time):
             if dest == x: continue
             dt[x][dest] = { via: INF for via in nodes if via != x }
         for nbr, w in graph[x].items():
-            for nbr, w in graph[x].items():
+            if nbr in dt[x]:
+                dt[x][nbr][nbr] = w
 
     t = start_time
     print_distance_tables(nodes, dt, t)
